@@ -1,0 +1,210 @@
+<footer>
+  <div class="footer footer-1">
+    <div class="main-footer">
+      <div class="container" *ngIf="merchant">
+        <div class="main-footer-container">
+          <div class="footer-item">
+            <div class="footer-item-heading">
+              <div class="logo">
+                <span *ngIf="merchant.logo == null" class="merchant-logo-title">{{merchant.name}}</span>
+                <a href="" *ngIf="merchant.logo != null">
+                  <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+                  </custom-img>
+                </a>
+              </div>
+            </div>
+            <div class="footer-item-content" *ngIf="pitchContent">
+              <p class="m-t-10" [innerHTML]="pitchContent.boxContent  | safeHtml"></p>
+            </div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-item-heading">
+              <custom-label [label]="'Address'"></custom-label>
+            </div>
+            <div class="footer-item-content">
+              <div class="footer-infopage">
+                <p>{{merchant.address.address}}, {{merchant.address.city}}, {{merchant.address.stateProvince}},
+                  {{merchant.address.country}} <br /> {{merchant.address.postalCode}}</p>
+                <p>Tel: {{merchant.phone}}</p>
+                <p>E-mail : {{merchant.email}}</p>
+              </div>
+              <div class="footer-social m-t-6" *ngIf="configuration">
+                <div class="social-item facebook">
+                  <a href="#">
+                    <i class="icon-facebook icon"></i>
+                  </a>
+                </div>
+                <div class="social-item twitter">
+                  <a href="#">
+                    <i class="icon-instagram icon"></i>
+                  </a>
+                </div>
+                <div class="social-item linkedin">
+                  <a href="#">
+                    <i class="icon-pinterest icon"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-item-heading">
+              <custom-label [label]="'Menu'"></custom-label>
+
+              <div class="footer-border"></div>
+            </div>
+            <div class="footer-item-content">
+              <ul class="footer-latest-post">
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/">{{'Home' | translate}}</a>
+                </li>
+                <ng-container *ngFor="let category of category">
+                  <ng-container *ngIf="category.visible">
+                    <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                      <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+                        {{category.description.name | translate}}</a>
+                      <!-- <ul class="sub-menu" *ngIf="category.children && category.children.length > 0">
+                      <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+                    </ul> -->
+                    </li>
+
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let content of content">
+                  <ng-container *ngIf="content.displayedInMenu">
+                    <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                      <a [routerLink]="'/content/' + content.slug">{{content.name | translate}}</a></li>
+                  </ng-container>
+                </ng-container>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/contact">{{ 'Contact' | translate }}</a>
+                </li>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/register">{{ 'Register' | translate }}</a>
+                </li>
+                <li class="post-item" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                  <a routerLink="/account">{{ 'Sign In' | translate }}</a>
+                </li>
+                <!-- <li>
+                  <div class="post-item">
+                    <a href="/">Home</a>
+                    <span class="post-time"></span>
+                  </div>
+                  <div class="post-item" *ngFor="let category of category">
+                    <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">{{category.description.name}}</a>
+                  </div>
+                  <div class="post-item" *ngFor="let content of content">
+                    <a [routerLink]="'/content/' + content.slug" *ngIf="content.displayedInMenu">{{content.name}}</a>
+                  </div>
+                  <div class="post-item">
+                    <a href="/contact">Contact Us</a>
+                  </div>
+                  <div class="post-item">
+                    <a (click)="changeLang()">{{lan == 'en' ? 'French' : 'English'}}</a>
+                  </div>
+                  <div class="post-item">
+                    <a href="/account">Register</a>
+                  </div>
+                  <div class="post-item">
+                    <a href="/account">Sign In</a>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-item-heading">
+              <custom-label [label]="'FOLLOW US'"></custom-label>
+              <!-- <h3>FOLLOW US</h3> -->
+              <div class="footer-border"></div>
+            </div>
+            <div class="footer-item-content">
+              <div class="footer-gallery m-b-36">
+                <div class="gallery">
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                  <div class="gallery-item">
+                    <a href="images/lightbox_01.jpg">
+                      <custom-img [src]="'../../../assets/images/gallery_01.jpg'" [alt]="'Image'">
+                      </custom-img>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div class="container">
+        <div class="sub-footer-container">
+          <div class="copy-right" *ngIf="merchant">
+            <p>Copyright © {{merchant.name}} {{getYear(merchant.inBusinessSince)}}. All rights reserved.</p>
+          </div>
+          <div class="footer-cash" *ngIf="configuration">
+            <div class="cash-item">
+              <a href="#">
+                <custom-img [src]="'../../../assets/images/icon/cash_01.png'" [alt]="'Master Card'">
+                </custom-img>
+              </a>
+            </div>
+            <div class="cash-item">
+              <a href="#">
+                <custom-img [src]="'../../../assets/images/icon/cash_02.png'" [alt]="'Paypal'">
+                </custom-img>
+
+              </a>
+            </div>
+            <div class="cash-item">
+              <a href="#">
+                <custom-img [src]="'../../../assets/images/icon/cash_03.png'" [alt]="'Visa'">
+                </custom-img>
+              </a>
+            </div>
+            <div class="cash-item">
+              <a href="#">
+                <custom-img [src]="'../../../assets/images/icon/cash_04.png'" [alt]="'America'">
+                </custom-img>
+              </a>
+            </div>
+            <div class="cash-item">
+              <a href="#">
+                <custom-img [src]="'../../../assets/images/icon/cash_05.png'" [alt]="'Discover'">
+                </custom-img>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

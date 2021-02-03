@@ -1,0 +1,42 @@
+<div class="shop-list">
+  <div class="shop-list-body" (scroll)="onScroll($event)">
+    <!-- <virtual-scroller #scroll [items]="productData" (vsEnd)="fetchMore($event)" [enableUnequalChildrenSizes]="true"> -->
+    <div class="shop-product" *ngFor="let result of productData; let i = index">
+      <div class=" product-image">
+        <a *ngIf="result.image" (click)="onClickName(result)">
+          <custom-img [src]="result.image.imageUrl" [alt]="'About Us'">
+          </custom-img>
+        </a>
+      </div>
+      <div class="product-body">
+        <div class="first">
+          <a class="name" (click)="onClickName(result)">{{result.description.name}}</a>
+          <p class="price"><span [ngClass]="result.discounted ? 'discount-price' : ''">{{result.originalPrice}}</span><span
+              *ngIf="result.discounted" class="original-price">{{result.finalPrice}}</span></p>
+          <!-- <p class="price">${{result.price}}</p> -->
+          <div class="product-rating" data-star="4">
+            <ngb-rating [rate]="result.rating"></ngb-rating>
+          </div>
+        </div>
+        <div class="color-choose" *ngIf="result.options != null">
+          <div *ngFor="let color of result.options[0].optionValues ; let i = index">
+            <input type="radio" id="red_{{color.id}}" name="color" value="{{color.name}}">
+            <label for="red_{{color.id}}"><span [style.background-color]="color.name"></span></label>
+          </div>
+        </div>
+        <p class="description" [innerHTML]="result.description.description">{{result.description.description}}</p>
+        <div class="product-button">
+          <btn [text]="'Add to cart'" (onClick)="onClickAddCart(result)"></btn>
+          <div class="product-favourite">
+            <input type="checkbox" class="red-heart-checkbox">
+            <div class="icon-heart"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- </virtual-scroller> -->
+  </div>
+
+</div>

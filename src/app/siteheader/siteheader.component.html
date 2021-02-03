@@ -1,0 +1,118 @@
+<!-- Header -->
+<!-- <settings> </settings> -->
+<header>
+  <div class="header-wrapper" *ngIf="merchant">
+    <!-- Desktop Menu -->
+    <div class="header-wrapper-desktop d-none d-lg-block">
+      <div class="header header-style-1">
+        <div class="header-main">
+          <div class="header__logo">
+            <span *ngIf="merchant.logo == null" class="merchant-logo-title">{{merchant.name}}</span>
+            <a href="" *ngIf="merchant.logo != null">
+              <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+              </custom-img>
+            </a>
+          </div>
+          <nav class="header__navbar" style="width:1400px">
+            <ul class="navbar-menu" style="text-align: center;">
+              <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a routerLink="/">{{'Home' | translate}}</a>
+              </li>
+              <ng-container *ngFor="let category of category">
+                <ng-container *ngIf="category.visible">
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                    <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+                      {{category.description.name | translate}}</a>
+                    <ul class="
+                          sub-menu" *ngIf="category.children && category.children.length > 0">
+                      <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+                    </ul>
+                  </li>
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngFor="let content of content">
+                <ng-container *ngIf="content.displayedInMenu">
+                  <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                    <a [routerLink]="'/content/' + content.slug" (click)="onClickContent(content)">{{content.name |
+                      translate}}</a></li>
+                </ng-container>
+              </ng-container>
+
+              <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+                <a routerLink="/contact">{{ 'Contact' | translate }}</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header__button">
+            <ul>
+              <li class="header-search">
+                <search></search>
+              </li>
+              <li class="header-shop-cart">
+                <button class="shop-cart-button" (click)="toggleSearch()">
+                  <img src="assets/images/icon/header-cart.png" alt="Search">
+                  <span *ngIf="count > 0" class="amount">{{count}}</span>
+                </button>
+              </li>
+              <li>
+                <button class="shop-cart-button" (click)="onSetting()">
+                  <img src="assets/images/icon/header-bar.png" alt="Search">
+                </button>
+                <settings [isOpen]="settingShow" [languageData]="merchant.supportedLanguages"></settings>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Desktop Menu -->
+
+    <!-- Mobile Menu -->
+    <div class="header-wrapper-mobile d-block d-lg-none">
+      <div class="header-mobile__bar">
+        <div class="header__logo">
+          <span *ngIf="merchant.logo == null">{{merchant.name}}</span>
+          <a href="/home" *ngIf="merchant.logo != null">
+            <custom-img [src]="merchant.logo.path" [alt]="'Logo'">
+            </custom-img>
+          </a>
+        </div>
+        <div>
+          <button class="header-mobile__button" (click)="onClickMenu()">
+            <span class="humburger-box {{active}}">
+              <span class="hamburger__inner"></span>
+            </span>
+          </button>
+          <button class="shop-cart-button" (click)="toggleSearch()">
+            <span class="humburger-box {{active}}">
+              <img src="assets/images/icon/header-bar.png" alt="Search">
+            </span>
+          </button>
+        </div>
+      </div>
+      <nav class="header-mobile__navbar {{active}}">
+        <ul>
+          <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a routerLink="/"> {{ 'Home' | translate }}</a>
+          </li>
+          <li *ngFor="let category of category" class={{subclick}} routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a (click)="onClickCategory(category)" [routerLink]="'/category/' + category.description.friendlyUrl">
+              {{category.description.name | translate}}</a><span class="icon-right"></span>
+            <ul class="sub-menu {{subclick}}" *ngIf="category.children && category.children.length > 0">
+              <menu-item #menu [items]="category.children" (onClick)="onClickCategory($event)"></menu-item>
+            </ul>
+          </li>
+          <li *ngFor="let content of content" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a *ngIf="content.displayedInMenu" [routerLink]="'/content/' + content.slug">{{content.name | translate }}</a>
+          </li>
+          <li routerLinkActive="active" routerLinkActiveOptions="{ exact: true }">
+            <a routerLink="/contact">{{ 'Contact' | translate }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- End Mobile Menu -->
+  </div>
+</header>
+<!-- End Heder -->

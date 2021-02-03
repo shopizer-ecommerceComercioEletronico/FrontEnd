@@ -1,0 +1,56 @@
+<div class="shopping-cart">
+    <banner [title]="'Shop Cart'"></banner>
+    <ng4-loading-spinner [timeout]="5000"></ng4-loading-spinner>
+    <div>
+        <div class="container p-t-100 py-tn-30">
+            <div class="row m-t-20">
+                <div class="col-md-12" *ngIf="cartData.length > 0">
+                    <list-header [data]="header_data"></list-header>
+
+                    <list [data]="cartData" (onCrossButtonClick)="removeCartData($event)" (onDownButtonClick)="updateQuantity($event, 0)"
+                        (onQtyChange)="updateQuantity($event, '')" (onUpButtonClick)="updateQuantity($event, 1)"
+                        [showGrid]="'1'"></list>
+                </div>
+                <div class="col-md-12" *ngIf="cartData.length == 0">
+                    <no-data [message]="'No items in your shopping cart'"></no-data>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container p-b-30 py-tn-30">
+        <div class="row m-t-20">
+            <div class="main-button">
+                <btn *ngIf="cartData.length > 0" [text]="'Clear Shopping Cart'" [className]="'white'" (click)="clearShoppingCard()"></btn>
+                <!-- <btn [text]="'Update Continue Shopping'" [className]="'white'"></btn> -->
+                <btn [text]="'Continue Shopping'" (click)="onClickContinueButton()"></btn>
+            </div>
+        </div>
+    </div>
+    <div class="container p-b-100" *ngIf="cartData.length > 0">
+        <div class="row">
+            <div class="col-md-6 p-r-lg--30  m-t-30 m-b-30">
+                <div class="shop-total">
+                    <custom-label [label]="'Coupon code'" [className]="'cart-border'"></custom-label>
+                    <input-field type="text" placeHolder="Coupon code" label="Enter your coupon code if you have one"
+                        bottom="40"></input-field>
+                    <btn [text]="'Apply Coupon'"></btn>
+                </div>
+            </div>
+            <div class="col-md-6 p-r-lg--30 m-t-30 m-b-30">
+                <div class="shop-total">
+                    <custom-label [label]="'cart total'" [className]="'cart-border'"></custom-label>
+                    <div class="sub-total">
+                        <custom-label [label]="'subtotal'"></custom-label>
+                        <span>${{subtotal}}</span>
+                    </div>
+                    <div class="grand-total">
+                        <custom-label [label]="'grandtotal'"></custom-label>
+                        <span>{{total}}</span>
+                    </div>
+                    <btn [text]="'Proceed to Checkout'" (onClick)="onCheckOut()"></btn>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.custom-textarea {
+    width: 100%;
+
+    textarea {
+        width: 100%;
+        border: 1px solid #e5e5e5;
+        padding: 10px 20px;
+        color: #999;
+        border-radius: 0;
+        font-size: 13px;
+    }
+
+    .label-after {
+        &:after {
+            content: '*';
+            color: #ff6666;
+            margin-left: 5px;
+        }
+    }
+}
