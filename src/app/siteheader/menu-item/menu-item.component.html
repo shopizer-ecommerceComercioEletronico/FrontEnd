@@ -1,3 +1,0 @@
-<li *ngFor="let menuItem of items" class="menu-item">
-    <a (click)="onClickCategory(menuItem)" [routerLink]="'/category/' + menuItem.description.friendlyUrl">{{menuItem.description.name.toUpperCase()}}</a>
-</li>

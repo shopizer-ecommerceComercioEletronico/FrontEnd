@@ -1,0 +1,43 @@
+.caixaRegistro {
+  /* width: 100%; */
+  margin-top: 50px;
+  padding: 96px;
+  background: #f0f0f5;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0, 1);
+  border-radius: 8px;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.voltarbtn {
+  margin-top: 20px;
+}
+.sectionbox {
+  margin-bottom: 50px;
+}
+a {
+  color: #f2a365;
+}
+.btn {
+  background-color: #30475e !important;
+  color: #f2a365;
+}
+
+p {
+  word-break: break-all;
+}
+.registerUser-container .content form {
+  /* width: 100%; */
+  max-width: 1000px;
+}
+
+.registerUser-container .content form input {
+  margin-top: 8px;
+}
+
+.registerUser-container .content form input-group {
+  display: flex;
+}
+
+.registerUser-container .content form input-group input + input {
+  margin-left: 8px;
+}

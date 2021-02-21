@@ -1,0 +1,10 @@
+ /*  let [counter, setCounter]= useState(0);
+ Array[valor variavel, função de atualização]
+  <button onClick={increment}>rola</button>  
+  
+  function increment(){
+    setCounter(counter+1);
+    
+  }
+
+  */
