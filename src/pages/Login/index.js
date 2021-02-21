@@ -13,36 +13,92 @@ export default function Login() {
   const [UserPass, setUserPass] = useState(false);
 
   useEffect(() => {
-    let store = JSON.parse(localStorage.getItem("adotei@token"));
+    let store = JSON.parse(localStorage.getItem("ecommerce"));
     if (store !== null) {
-      history.push("/adocao");
+      history.push("/home");
     }
   }, [history]);
 
-  
+  async function handleLogin(e) {
+    e.preventDefault();
+    setUserPass(false);
+    setFildErro(false);
+    if (username !== "" || password !== "") {
+      setload(true);
+
+      apiSevice
+        .post("/auth/login", {
+          username,
+          password,
+        })
+        .then((response) => {
+          localStorage.clear();
+          localStorage.setItem("ecommerce", JSON.stringify(response.data));
+          history.push("/home");
+          setload(false);
+        })
+        .catch((err) => {
+          setload(false);
+          console.log(err);
+          setUserPass(true);
+        });
+    } else {
+      setFildErro(true);
+    }
+  }
 
   return (
-   <div>
-     <h2>Login</h2>
-      <div>
-        <form>
-          <div className="form-group">
-            <label for="username">Username</label>
-            <input type="text" className="form-control" />
-          </div>
-          <div className="form-group">
-            <label for="inputPassword">Senha</label>
-            <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-          </div>
-          <div className="form-group">
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Criar Conta</button>
-          </div>
-        </form>
-      </div>
-      
+    <div className="row">
+      <div className="login-container col s12 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
+        <section className="form col s8 offset-s2">
+          <form onSubmit={handleLogin}>
+            <h1 id="adotei">Login</h1>
 
-   </div>
+            <h3 id="bemvindo">Bem vindo!</h3>
+            {UserPass ? (
+              <span id="erro">Usuário ou Senha incorreto</span>
+            ) : (
+              <p></p>
+            )}
+            <input
+              placeholder="Login"
+              value={username}
+              onChange={(e) => setLogin(e.target.value)}
+            ></input>
+            {FildErro ? <span id="erro">campo obrigatório</span> : null}
+
+            <input
+              placeholder="Senha"
+              type="password"
+              value={password}
+              onChange={(e) => setSenha(e.target.value)}
+            ></input>
+            {FildErro ? <span id="erro">campo obrigatório</span> : null}
+            {!load ? (
+              <button
+                className={"button btn waves-effect waves-light"}
+                type="submit"
+              >
+                Entrar
+              </button>
+            ) : (
+              <div className="progress">
+                <div className="indeterminate"></div>
+              </div>
+            )}
+
+            <Link className="row" to="/registeruser">
+              {/* <Link className="fa fa-facebook" to="/adocao"></Link>
+            <Link className="fa fa-google" to="/adocao"></Link> */}
+              <div className="col s12">
+                <FiLogIn size={16} color="#3b5998" />
+                <span id="cadastro">Cadastrar</span>
+                <span id="cadastro">alterar Senha</span>
+              </div>
+            </Link>
+          </form>
+        </section>
+      </div>
+    </div>
   );
 }
-
