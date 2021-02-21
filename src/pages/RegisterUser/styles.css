@@ -2,7 +2,7 @@
   /* width: 100%; */
   margin-top: 50px;
   padding: 96px;
-  background: #f0f0f5;
+  background: #ffffff;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0, 1);
   border-radius: 8px;
   /* justify-content: center; */
@@ -15,11 +15,11 @@
   margin-bottom: 50px;
 }
 a {
-  color: #f2a365;
+  color: #000000;
 }
 .btn {
-  background-color: #30475e !important;
-  color: #f2a365;
+  background-color: #d8d8d8 !important;
+  color: #333333;
 }
 
 p {

@@ -7,6 +7,7 @@ return(<div>
     tem que excluir item do Carrinho
     verificar se esta logado
     finalizar compra
+    <span id="cadastro">alterar Senha</span>
   </h1>
 
 

@@ -3,6 +3,7 @@ import "./styles.css";
 import { Link, useHistory } from "react-router-dom";
 import apiSevice from "../../services/api";
 import { FiLogIn } from "react-icons/fi";
+import Cabecalho from "../Cabecalho";
 
 export default function Login() {
   const history = useHistory();
@@ -15,7 +16,7 @@ export default function Login() {
   useEffect(() => {
     let store = JSON.parse(localStorage.getItem("ecommerce"));
     if (store !== null) {
-      history.push("/home");
+      history.push("/");
     }
   }, [history]);
 
@@ -34,7 +35,7 @@ export default function Login() {
         .then((response) => {
           localStorage.clear();
           localStorage.setItem("ecommerce", JSON.stringify(response.data));
-          history.push("/home");
+          history.push("/");
           setload(false);
         })
         .catch((err) => {
@@ -49,12 +50,11 @@ export default function Login() {
 
   return (
     <div className="row">
-      <div className="login-container col s12 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
+      <Cabecalho/> 
+      <div background="https://s3.ca-central-1.amazonaws.com/shopizer-lightsail/files/DEFAULT/slider2.jpg" className="login-container col s12 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
         <section className="form col s8 offset-s2">
           <form onSubmit={handleLogin}>
-            <h1 id="adotei">Login</h1>
-
-            <h3 id="bemvindo">Bem vindo!</h3>
+            <h1 id="adotei">Moveis eComerce</h1>
             {UserPass ? (
               <span id="erro">Usuário ou Senha incorreto</span>
             ) : (
@@ -93,7 +93,7 @@ export default function Login() {
               <div className="col s12">
                 <FiLogIn size={16} color="#3b5998" />
                 <span id="cadastro">Cadastrar</span>
-                <span id="cadastro">alterar Senha</span>
+                
               </div>
             </Link>
           </form>

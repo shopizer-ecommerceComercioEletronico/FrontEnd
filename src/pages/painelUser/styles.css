@@ -6,7 +6,7 @@
   border-radius: 10px 10px 10px 10px;
 }
 form input {
-  color:#05070c;;
+  color: #3b5998;
 }
 #erro {
   color: #dd4b39;
@@ -14,12 +14,12 @@ form input {
 #adotei {
   font-family: "Tahoma";
 
-  color: #05070c;
+  color: #3b5998;
 }
 #bemvindo {
   font-family: "Tahoma";
 
-  color: #05070c;
+  color: #3b5998;
 }
 #textologin {
   font-family: "Tahoma";
@@ -29,7 +29,7 @@ form input {
 #cadastro {
   align-self: center;
   font-size: large;
-  color: #05070c;
+  color: #3b5998;
 }
 /* Style all font awesome icons */
 .fa {
