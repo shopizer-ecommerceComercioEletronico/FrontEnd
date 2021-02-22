@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiService = () => {
   const axiosInstance = axios.create({
-    baseURL: "http://ecommerce-moveis-dev.herokuapp.com/",
+    baseURL: "https://ecommerce-moveis.herokuapp.com",
   });
   axiosInstance.interceptors.request.use(
     (config) => {
