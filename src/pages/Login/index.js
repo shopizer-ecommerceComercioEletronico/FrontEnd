@@ -35,7 +35,7 @@ export default function Login() {
         .then((response) => {
           localStorage.clear();
           localStorage.setItem("ecommerce", JSON.stringify(response.data));
-          history.push("/");
+          history.push("/painel");
           setload(false);
         })
         .catch((err) => {

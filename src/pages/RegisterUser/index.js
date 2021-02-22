@@ -15,6 +15,7 @@ export default function RegisterUser() {
   const [email, setEmail] = useState("");
 
   async function SendData() {
+
     const data = {
       firstName,
       lastName,
@@ -50,7 +51,7 @@ export default function RegisterUser() {
             <center><h5 id="adotei">Registro </h5></center>
           </div>
         </section>
-        <form className="col s6 offset-s3">
+        <form onSubmit={SendData} className="col s6 offset-s3">
           <input
             placeholder="Primeiro nome"
             value={firstName}

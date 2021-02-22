@@ -1,61 +1,43 @@
-.login-container {
-  /* position: absolute; */
+.caixaRegistro {
+  /* width: 100%; */
   margin-top: 50px;
-  background-color: #f0f0f5;
-
-  border-radius: 10px 10px 10px 10px;
+  padding: 96px;
+  background: #ffffff;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0, 1);
+  border-radius: 8px;
+  /* justify-content: center; */
+  /* align-items: center; */
 }
-form input {
-  color: #3b5998;
+.voltarbtn {
+  margin-top: 20px;
 }
-#erro {
-  color: #dd4b39;
+.sectionbox {
+  margin-bottom: 50px;
 }
-#adotei {
-  font-family: "Tahoma";
-
-  color: #3b5998;
+a {
+  color: #000000;
 }
-#bemvindo {
-  font-family: "Tahoma";
-
-  color: #3b5998;
-}
-#textologin {
-  font-family: "Tahoma";
-  margin-top: 50px;
-  color: #3b5998;
-}
-#cadastro {
-  align-self: center;
-  font-size: large;
-  color: #3b5998;
-}
-/* Style all font awesome icons */
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 171px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 10px 10px 10px 10px;
+.btn {
+  background-color: #d8d8d8 !important;
+  color: #333333;
 }
 
-/* Add a hover effect if you want */
-.fa:hover {
-  opacity: 0.7;
+p {
+  word-break: break-all;
+}
+.registerUser-container .content form {
+  /* width: 100%; */
+  max-width: 1000px;
 }
 
-/* Set a specific color for each brand */
-
-/* Facebook */
-.fa-facebook {
-  background: #3b5998;
-  color: white;
+.registerUser-container .content form input {
+  margin-top: 8px;
 }
 
-.fa-google {
-  background: #dd4b39;
-  color: white;
+.registerUser-container .content form input-group {
+  display: flex;
+}
+
+.registerUser-container .content form input-group input + input {
+  margin-left: 8px;
 }

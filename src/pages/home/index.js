@@ -9,11 +9,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Cabecalho from "../Cabecalho/index.js";
 import { GridList } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 
 export default function Home() {
-  const [carrinho, setCarrinho] = useState([]);
-
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,

@@ -1,77 +1,71 @@
-
 import "./styles.css";
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Cabecalho from "../Cabecalho/index.js"
-import { GridList } from "@material-ui/core";
+import React, { useState } from "react";
+import Cabecalho from "../Cabecalho/index.js";
+import apiService from "../../services/api";
+import jwt_decode from "jwt-decode";
+import { useHistory } from "react-router";
+
 export default function PainelUser() {
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    color: "black",
-    paddingTop: '0%', // 16:9,
-    marginTop:'5%',
-    margin: '5%',
-    alignItems:'left'
-    
-  },
+  const history = useHistory();
+  const [password, setPassword] = useState("");
+  let store = JSON.parse(localStorage.getItem("ecommerce"));
+  var decoded = jwt_decode(store.access_token);
 
-});
 
-function ImgMediaCard() {
-  const classes = useStyles();
+  async function SendData(e) {
+    e.preventDefault();
+    const data = {
+      id: decoded.id,
+      password,
 
+    };
+
+    apiService
+      .patch("/user", data)
+      .then((response) => {
+        history.push("/");
+        
+      })
+      .catch((e) => {
+        console.log(e);
+        
+      });
+  }
+
+
+
+
+  
   return (
-  <div>
-    <Card className={classes.root} >
-      <CardActionArea >
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          //Length 
-          image="https://bancodeimagens.s3.us-east-2.amazonaws.com/antique.recycledwood.jpg"
-          title="Contemplative Reptile"
-          
+    <div>
+      <Cabecalho />
+      <div className="caixaRegistro col s12 m8 offset-m2 l6 offset-l3 xl4 offset-xl4">
+        <section className="col s12 sectionbox">
+          <div className="col s2"></div>
+          <div className="col s12 m6 offset-m1">
+            <center>
+              <h5 >Trocar senha </h5>
+            </center>
+          </div>
+        </section>
+      </div>
+
+      <form onSubmit={SendData} className="col s6 offset-s3">
+        <input
+          placeholder="insira a nova senha"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <CardContent >
-          <Typography gutterBottom variant="h5" component="h2">
-          US$1,199.99
-          </Typography>
-        </CardContent>
-      </CardActionArea >
-      <CardActions >
-        <Button variant="contained" size="small" color="primary">
-          add carrinho
-        </Button>
-      </CardActions>
-    </Card>
+        <button
+          className="button btn waves-effect waves-light"
+          type="submit"
+          name="action"
+          onClick = {()=>{}}
+        >
+          Mudar senha
+        </button>
+      </form>
     </div>
   );
 }
-  return(<div>
-    <Cabecalho/> 
-<GridList>
-    <ImgMediaCard></ImgMediaCard>
-    <ImgMediaCard></ImgMediaCard>
-    <ImgMediaCard></ImgMediaCard>
-    <ImgMediaCard></ImgMediaCard>
-    <ImgMediaCard></ImgMediaCard>
-    <ImgMediaCard></ImgMediaCard>
-   </GridList>
-
-
-  </div>
-   
-  );
-}
-
-
-

@@ -6,12 +6,12 @@ const apiService = () => {
   });
   axiosInstance.interceptors.request.use(
     (config) => {
-      const store = localStorage.getItem("adotei@token");
+      const store = localStorage.getItem("ecommerce");
       if (store) {
-        let token = JSON.parse(store).token;
+        let token = JSON.parse(store).access_token;
         //console.log(">>>>>", token);
-        //config.headers["Authorization"] = `${store.token}`;
-        config.headers = { auth: token };
+        config.headers["Authorization"] = `Bearer ${token}`;
+        //config.headers = { auto: token };
       }
       // config.headers['Content-Type'] = 'application/json';
       return config;
