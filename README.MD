@@ -1,7 +1,3 @@
-## Adotei Front
-
-Adotei é um site de apadrinhamento de Pets que estão em ONGs cadastradas, doando dinheiro para os pets ajudando as ONGs
-
 ## Tecnologia React
 
 Esse repositório foi criado para aprender Reactjs, mais do que criar um projeto completo.
